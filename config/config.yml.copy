@@ -17,7 +17,7 @@ development:
     address: <%= ENV["SMTP_SETTING_ADDRESS"] %>
     port: <%= ENV["SMTP_SETTING_PORT"] %>
     authentication: <%= ENV["SMTP_SETTING_AUTHENTICATION"] %>
-    enable_starttls_auto: <%= ENV["SMTP_SETTING_ENABLE_START_TLS_AUTO"] %>
+    enable_starttls_auto: true
     user_name: <%= ENV["SMTP_SETTING_USERNAME"] %>
     password: <%= ENV["SMTP_SETTING_PASSWORD"] %>
 
@@ -44,7 +44,7 @@ production:
     address: <%= ENV["SMTP_SETTING_ADDRESS"] %>
     port: <%= ENV["SMTP_SETTING_PORT"] %>
     authentication: <%= ENV["SMTP_SETTING_AUTHENTICATION"] %>
-    enable_starttls_auto: <%= ENV["SMTP_SETTING_ENABLE_START_TLS_AUTO"] %>
+    enable_starttls_auto: true
     user_name: <%= ENV["SMTP_SETTING_USERNAME"] %>
     password: <%= ENV["SMTP_SETTING_PASSWORD"] %>
 

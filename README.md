@@ -176,12 +176,16 @@ You can also configure Apache, Nginx or any other web/application server of your
 #### Git Clone
 Git clone this repo
 ```
-$ git clone git@github.com:akhenda/open-source-billing.git
+$ git clone https://github.com/akhenda/open-source-billing.git
 $ cd open-source-billing
 ```
 
 #### Configurations
-Fill the env file with necessary details.
+Copy & fill the env file with necessary details.
+
+```
+$ cp .env.sample .env
+```
 
 Copy `config/database.yml.copy` to `config/database.yml`, `config/application.yml.copy` to `config/application.yml`, `config/config.yml.copy` to `config/config.yml` to set your configurations.
 ```
@@ -195,9 +199,19 @@ $ cp config/environments/production.rb.copy config/environments/production.rb
 ```
 
 #### Docker
+Build the images
+```
+$ docker-compose build
+```
+
 Run the images
 ```
 $ docker-compose up -d
+```
+
+Run DB Migrations
+```
+$ docker-compose run --rm app rake db:migrate db:seed
 ```
 
 
