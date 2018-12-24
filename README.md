@@ -40,9 +40,9 @@ MySql is an open-source relational database management system. Run the following
 
 #### 1.2 Git
 Git is version control system we used for OSB. Run the following command to install git.
-    
+
     sudo apt-get install git
-    
+
 ### Step-2. Ruby Installation Using RVM
 
 #### 2.1 Dependencies for Ruby
@@ -55,7 +55,7 @@ Run the following command to install ruby dependencies:
 You may need access to dependent pecl libraries, most which can be found by
 
     sudo add-apt-repository ppa:ondrej/php
-    
+
 #### 2.2 Ruby using RVM (development version)
 Run the following commands to install stable version:
 
@@ -76,7 +76,7 @@ Bundler is a tool that allows you to install multiple gem versions, run this com
 
 #### 3.1 Clone Application Code
 To clone project code from GitHub, give your GitHub account credential for authentication while cloning project.
-    
+
     git clone https://github.com/vteams/open-source-billing
 
 
@@ -170,6 +170,36 @@ and use your application in browser by typing in url: localhost:3000
 #### 4.2 Production Environment
 
 You can also configure Apache, Nginx or any other web/application server of your choice to execute OSB in production mode.
+
+## Docker Instructions
+
+#### Git Clone
+Git clone this repo
+```
+$ git clone git@github.com:akhenda/open-source-billing.git
+$ cd open-source-billing
+```
+
+#### Configurations
+Fill the env file with necessary details.
+
+Copy `config/database.yml.copy` to `config/database.yml`, `config/application.yml.copy` to `config/application.yml`, `config/config.yml.copy` to `config/config.yml` to set your configurations.
+```
+$ cp config/database.yml.copy config/database.yml
+$ cp config/application.yml.copy config/application.yml
+$ cp config/config.yml.copy config/config.yml
+```
+Copy one of the environments e.g. **production** from `config/environments/production.rb.copy` to `config/environments/production.rb`
+```
+$ cp config/environments/production.rb.copy config/environments/production.rb
+```
+
+#### Docker
+Run the images
+```
+$ docker-compose up -d
+```
+
 
 Contributing
 ------------
