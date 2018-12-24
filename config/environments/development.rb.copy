@@ -46,5 +46,5 @@ Osb::Application.configure do
                             }
 
       ExceptionNotifier::Rake.configure
-  end
+
 end

@@ -38,6 +38,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_listing_layout
   before_filter :authenticate_user!
 
+  before_action :set_paper_trail_whodunnit
 
   before_action :set_locale
   rescue_from CanCan::AccessDenied do |exception|

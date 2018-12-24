@@ -7,11 +7,11 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: osb_development
+  database: <%= ENV["MYSQL_DATABASE"] %>
   pool: 5
-  username: root
-  password: 
-  host: localhost
+  username: <%= ENV["MYSQL_USER"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
+  host: <%= ENV["MYSQL_HOST"] %> # if using Docker use 'db', the name of the database service here
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,19 +20,18 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: osb_test
+  database: <%= ENV["MYSQL_DATABASE"] %>
   pool: 5
-  username: root
-  password: 
-  host: localhost
+  username: <%= ENV["MYSQL_USER"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
+  host: <%= ENV["MYSQL_HOST"] %> # if using Docker use 'db', the name of the database service here
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: osb_production
+  database: <%= ENV["MYSQL_DATABASE"] %>
   pool: 5
-  username: root
-  password: 
-  host: localhost
-
+  username: <%= ENV["MYSQL_USER"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
+  host: <%= ENV["MYSQL_HOST"] %> # if using Docker use 'db', the name of the database service here

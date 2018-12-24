@@ -1,54 +1,54 @@
 development:
-  app_host: APP_HOST_HERE # e.g. osb.mydomain.com
-  app_protocol: http
-  activemerchant_billing_mode: test
-  demo_mode: false
-  wkhtmltopdf_path: YOUR_WKHTMLTOPDF_PATH  #run "which wkhtmltopdf" you will get path
-  encryption_key: ENTER-YOUR-ENCRYPTED-KEY-HERE
+  app_host: <%= ENV["APP_HOST"] %> # e.g. osb.mydomain.com
+  app_protocol: <%= ENV["APP_PROTOCOL"] %>
+  activemerchant_billing_mode: <%= ENV["ACTIVE_MERCHANT_BILLING_MODE"] %> # use 'test' as the default
+  demo_mode: <%= ENV["DEMO_MODE"] %>
+  wkhtmltopdf_path: <%= ENV["WKHTMLTOPDF_PATH"] %>  #run "which wkhtmltopdf" you will get path
+  encryption_key: <%= ENV["APP_ENCRYPTION_KEY"] %>
 
   paypal:
     url: https://www.sandbox.paypal.com/cgi-bin/webscr?
-    login: YOUR_PAYPAL_LOGIN
-    password: YOUR_PAYPAL_PASSWORD
-    signature: YOUR_PAYPAL_SIGNATURE
-    business: YOUR_PAYPAL_BUSINESS
+    login: <%= ENV["PAYPAL_LOGIN"] %>
+    password: <%= ENV["PAYPAL_PASSWORD"] %>
+    signature: <%= ENV["PAYPAL_SIGNATURE"] %>
+    business: <%= ENV["PAYPAL_BUSINESS"] %>
 
   smtp_setting:
-    address: smtp.gmail.com
-    port: 587
-    authentication: :plain
-    enable_starttls_auto: true
-    user_name: YOUR_EMAIL_HERE
-    password: YOUR_PASSWORD_HERE
+    address: <%= ENV["SMTP_SETTING_ADDRESS"] %>
+    port: <%= ENV["SMTP_SETTING_PORT"] %>
+    authentication: <%= ENV["SMTP_SETTING_AUTHENTICATION"] %>
+    enable_starttls_auto: <%= ENV["SMTP_SETTING_ENABLE_START_TLS_AUTO"] %>
+    user_name: <%= ENV["SMTP_SETTING_USERNAME"] %>
+    password: <%= ENV["SMTP_SETTING_PASSWORD"] %>
 
   quickbooks:
     # QuickBooksApp account key and secret
-    consumer_key: YOUR_QUICKBOOKS_APP_CLIENT_ID
-    consumer_secret: YOUR_QUICKBOOKS_APP_CLIENT_SECRET
+    consumer_key: <%= ENV["QUICKBOOKS_APP_CLIENT_ID"] %>
+    consumer_secret: <%= ENV["QUICKBOOKS_APP_CLIENT_SECRET"] %>
 
 production:
-  app_host: APP_HOST_HERE # e.g. osb.mydomain.com
-  app_protocol: http
-  activemerchant_billing_mode: test
-  wkhtmltopdf_path: YOUR_WKHTMLTOPDF_PATH  #run "which wkhtmltopdf" you will get path
-  encryption_key: ENTER-YOUR-ENCRYPTED-KEY-HERE
+  app_host: <%= ENV["APP_HOST"] %> # e.g. osb.mydomain.com
+  app_protocol: <%= ENV["APP_PROTOCOL"] %>
+  activemerchant_billing_mode: <%= ENV["ACTIVE_MERCHANT_BILLING_MODE"] %> # use 'test' as the default
+  wkhtmltopdf_path: <%= ENV["WKHTMLTOPDF_PATH"] %>  #run "which wkhtmltopdf" you will get path
+  encryption_key: <%= ENV["APP_ENCRYPTION_KEY"] %>
 
   paypal:
     url: https://www.sandbox.paypal.com/cgi-bin/webscr?
-    login: YOUR_PAYPAL_LOGIN
-    password: YOUR_PAYPAL_PASSWORD
-    signature: YOUR_PAYPAL_SIGNATURE
-    business: YOUR_PAYPAL_BUSINESS
+    login: <%= ENV["PAYPAL_LOGIN"] %>
+    password: <%= ENV["PAYPAL_PASSWORD"] %>
+    signature: <%= ENV["PAYPAL_SIGNATURE"] %>
+    business: <%= ENV["PAYPAL_BUSINESS"] %>
 
   smtp_setting:
-    address: smtp.gmail.com
-    port: 587
-    authentication: :plain
-    enable_starttls_auto: true
-    user_name: YOUR_EMAIL_HERE
-    password: YOUR_PASSWORD_HERE
+    address: <%= ENV["SMTP_SETTING_ADDRESS"] %>
+    port: <%= ENV["SMTP_SETTING_PORT"] %>
+    authentication: <%= ENV["SMTP_SETTING_AUTHENTICATION"] %>
+    enable_starttls_auto: <%= ENV["SMTP_SETTING_ENABLE_START_TLS_AUTO"] %>
+    user_name: <%= ENV["SMTP_SETTING_USERNAME"] %>
+    password: <%= ENV["SMTP_SETTING_PASSWORD"] %>
 
   quickbooks:
     # QuickBooksApp account key and secret
-    consume_key: YOUR_QUICKBOOKS_APP_CLIENT_ID
-    consumer_secret: YOUR_QUICKBOOKS_APP_CLIENT_SECRET
+    consume_key: <%= ENV["QUICKBOOKS_APP_CLIENT_ID"] %>
+    consumer_secret: <%= ENV["QUICKBOOKS_APP_CLIENT_SECRET"] %>

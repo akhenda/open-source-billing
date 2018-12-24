@@ -15,7 +15,7 @@ gem 'rake', '< 11.0'
 gem 'responders', '~> 2.0'
 
 group :assets do
-  gem 'sass-rails', '5.0.4'
+  gem 'sass-rails', '5.0.6'
   gem 'yajl-ruby', '~>1.3.1'
   gem 'coffee-rails', '4.1.1'
   gem 'therubyracer', '0.12.2', :platforms => :ruby
@@ -31,7 +31,7 @@ gem 'paranoia', '2.1.5'
 gem 'activerecord-mysql-adapter', '0.0.1'
 gem 'delayed_job_active_record', '4.1.1'
 gem 'daemons', '1.2.3'
-gem 'hashie_rails', '0.0.4'
+gem 'hashie-forbidden_attributes', '0.1.1'
 group :development do
   gem 'better_errors', '2.1.1'
   gem "binding_of_caller", ">= 0.6.9"
@@ -102,4 +102,4 @@ gem 'i18n-js', '~> 3.0', '>= 3.0.5'
 gem 'simple_form', '3.5.1'
 gem 'cocoon', '~> 1.2', '>= 1.2.11'
 gem 'nouislider-rails', '~> 8.2', '>= 8.2.1'
-# gem 'simple_token_authentication', '~> 1.0'
+gem 'simple_token_authentication', '~> 1.0'

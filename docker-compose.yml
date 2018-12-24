@@ -1,0 +1,67 @@
+version: '2'
+
+volumes:
+  db_data: {}
+
+services:
+  cache:
+    image: memcached:1.4-alpine
+  db:
+    env_file: .env
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+  db_backup:
+    image: alanvoss/mysqldump-googledrive:1.0
+    volumes:
+      - ~/.credentials/docker-mysqldump-googledrive:/var/lib/credentials
+    environment:
+      GOOGLE_DRIVE_BACKUPS_FOLDER: OSBDatabaseBackups
+      LOCAL_CREDENTIALS_FOLDER: /var/lib/credentials
+      MYSQL_HOST: db
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      BACKUP_FILE_PREFIX: db_dump_
+      BACKUP_FREQUENCY: 2 weeks
+    links:
+      - db:db
+  pma:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    links:
+      - db
+    ports:
+      - 8181:80
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+  jobs:
+    env_file: .env
+    build: .
+    volumes:
+      - .:/usr/src/osbapp
+    command: "bin/delayed_job start"
+    depends_on:
+      - db
+  app:
+    env_file: .env
+    build: .
+    command: "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/usr/src/osbapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - cache
+    links:
+      - db
