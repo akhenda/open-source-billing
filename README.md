@@ -199,17 +199,15 @@ $ cp config/environments/production.rb.copy config/environments/production.rb
 ```
 
 #### Docker
-Build the images
+1.  **(Optional)** Setup `docker-mysqldump-googledrive` by following the instructions on [this README](https://github.com/alanvoss/docker-mysqldump-googledrive/blob/master/README.md). Consequently, copy the credentials folder to `~/.credentials/docker-mysqldump-googledrive`.
+&nbsp;
+2.  Build and run the containers
 ```
-$ docker-compose build
-```
-
-Run the images
-```
-$ docker-compose up -d
+$ docker-compose up --build -d
 ```
 
-Run DB Migrations
+3.  Run DB Migrations
+**NB:** You may need to change mysql port if the default 3306 is in use.
 ```
 $ docker-compose run --rm app rake db:migrate db:seed
 ```
