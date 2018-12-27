@@ -44,6 +44,8 @@ RUN rm -rf wkhtmltox*
 
 WORKDIR /usr/src/osbapp
 
+ENV RAILS_ENV=production
+
 COPY Gemfile .
 COPY . .
 
