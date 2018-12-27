@@ -25,7 +25,7 @@ class EstimateMailer < ActionMailer::Base
   def new_estimate_email(client, estimate, e_id , current_user)
     template = replace_template_body(current_user, estimate, 'New Estimate') #(logged in user,invoice,email type)
     @email_html_body = template.body
-    email_body = mail(:to => client.email, :subject => template.subject).body.to_s
+    email_body = mail(:to => client.email, :bcc => ENV["ACTION_MAILER_BCC"], :subject => template.subject).body.to_s
     estimate.sent_emails.create({
                                    :content => email_body,
                                    :sender => current_user.email, #User email

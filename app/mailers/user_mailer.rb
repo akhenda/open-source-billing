@@ -25,7 +25,7 @@ class UserMailer < ActionMailer::Base
      #@creator, @account, @sub_user = current_user.user_name || current_user.email , current_user.accounts.first.org_name, sub_user
      template = replace_template_body(current_user, sub_user, 'New User') #(logged in user,sub user,email type)
      @email_html_body = template.body
-     mail(:to => sub_user.email, :subject => template.subject)
+     mail(:to => sub_user.email, :bcc => ENV["ACTION_MAILER_BCC"], :subject => template.subject)
    end
 
   def get_email_template(user, template_type)
@@ -56,6 +56,6 @@ class UserMailer < ActionMailer::Base
     recipient = @user.email
     @import_data_result_message = import_data_result_message
     @module_name = module_name
-    mail(to: recipient, subject: "OpenSourceBilling: Quickbooks import data result for #{module_name} module")
+    mail(to: recipient, :bcc => ENV["ACTION_MAILER_BCC"], subject: "OpenSourceBilling: Quickbooks import data result for #{module_name} module")
   end
 end
