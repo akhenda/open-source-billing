@@ -202,8 +202,11 @@ $ cp config/environments/production.rb.copy config/environments/production.rb
 1.  **(Optional)** Setup `docker-mysqldump-googledrive` by following the instructions on [this README](https://github.com/alanvoss/docker-mysqldump-googledrive/blob/master/README.md). Consequently, copy the credentials folder to `~/.credentials/docker-mysqldump-googledrive`.
 &nbsp;
 2.  Build and run the containers
+Make sure the `db` container is up before starting the other containers.
 ```
-$ docker-compose up --build -d
+$ docker-compose build
+$ docker-compose up -d db cache
+$ docker-compose up -d pma db_backup app
 ```
 
 3.  Run DB Migrations

@@ -19,6 +19,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
+    depends_on:
+      - cache
   db_backup:
     image: alanvoss/mysqldump-googledrive:1.0
     volumes:
@@ -32,8 +34,10 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       BACKUP_FILE_PREFIX: db_dump_
       BACKUP_FREQUENCY: 2 weeks
+    depends_on:
+      - db
     links:
-      - db:db
+      - db
   pma:
     image: phpmyadmin/phpmyadmin
     restart: always
@@ -44,24 +48,19 @@ services:
     environment:
       PMA_HOST: db
       PMA_PORT: 3306
-  jobs:
-    env_file: .env
-    build: .
-    volumes:
-      - .:/usr/src/osbapp
-    command: "bin/delayed_job start"
     depends_on:
-      - db
+      - db_backup
   app:
     env_file: .env
     build: .
-    command: "bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: sh -c "bin/delayed_job start && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      RAILS_ENV: production
     volumes:
       - .:/usr/src/osbapp
     ports:
       - "3000:3000"
     depends_on:
-      - db
-      - cache
+      - pma
     links:
       - db

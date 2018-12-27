@@ -19,7 +19,7 @@
 # along with Open Source Billing.  If not, see <http://www.gnu.org/licenses/>.
 #
 class EstimateMailer < ActionMailer::Base
-  default :from => 'support@opensourcebilling.org'
+  default :from => <%= ENV["ACTION_MAILER_SENDER"] %>
   @@response_to_client = ''
   @@reason_by_client =  ''
   def new_estimate_email(client, estimate, e_id , current_user)
